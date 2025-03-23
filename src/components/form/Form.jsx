@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Form = ({ input, setInput,setInputArr, inputArr, editIndex }) => {
-
-   
+const Form = ({ input, setInput, setInputArr, inputArr, editIndex }) => {
+    const [message, setMessage] = useState("");
+    const [messageType, setMessageType] = useState("success"); 
 
     useEffect(() => {
         if (editIndex !== null && inputArr[editIndex]) {
@@ -10,23 +10,45 @@ const Form = ({ input, setInput,setInputArr, inputArr, editIndex }) => {
         }
     }, [editIndex, inputArr, setInput]);
 
+    useEffect(() => {
+        if (message) {
+            const timer = setTimeout(() => {
+                setMessage("");
+            }, 2000); 
+
+            return () => clearTimeout(timer); 
+        }
+    }, [message]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setInput(prev => ({ ...prev, [name]: value }));
     };
 
     const addToList = () => {
-        if(editIndex != null){
-            setInputArr(rev=>rev.map( (item,index) => (index === editIndex ? input : item )))
-        }else{
-            setInputArr(prev => [...prev,input]);
-            setInput({ title: "", content: "" });
+        if (input.title === "" || input.content === "") {
+            setMessage("Fields cannot be empty!");
+            setMessageType("danger"); 
+            return;
         }
-       
-    }
+
+        if (editIndex !== null) {
+            setInputArr(prev => prev.map((item, index) => (index === editIndex ? input : item)));
+            setMessage("Edited successfully!");
+            setMessageType("success");
+        } else {
+            setInputArr(prev => [...prev, input]);
+            setMessage("Added successfully!");
+            setMessageType("success");
+        }
+
+        setInput({ title: "", content: "" });
+    };
 
     return (
         <div className='row my-4'>
+           
+            {message && <div className={`alert alert-${messageType}`}>{message}</div>}
             
             <div className="mb-3">
                 <input 
@@ -39,7 +61,6 @@ const Form = ({ input, setInput,setInputArr, inputArr, editIndex }) => {
                 />
             </div>
 
-            
             <div className="form-floating mb-3">
                 <textarea
                     name="content"  
@@ -52,9 +73,10 @@ const Form = ({ input, setInput,setInputArr, inputArr, editIndex }) => {
                 />
             </div>
 
-            
             <div className="form-floating mb-3">
-                <button className='btn btn-primary' onClick={addToList}>{editIndex==null?"Add":"Edit"}</button>
+                <button className='btn btn-primary' onClick={addToList}>
+                    {editIndex === null ? "Add" : "Edit"}
+                </button>
             </div>
         </div>
     );
