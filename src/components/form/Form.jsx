@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const Form = ({ input, setInput,setInputArr }) => {
+const Form = ({ input, setInput,setInputArr, inputArr, editIndex }) => {
 
    
 
+    useEffect(() => {
+        if (editIndex !== null && inputArr[editIndex]) {
+            setInput(inputArr[editIndex]);  
+        }
+    }, [editIndex, inputArr, setInput]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setInput(prev => ({ ...prev, [name]: value })); 
+        setInput(prev => ({ ...prev, [name]: value }));
     };
 
     const addToList = () => {
-        setInputArr(prev => [...prev,input]);
+        if(editIndex != null){
+            setInputArr(rev=>rev.map( (item,index) => (index === editIndex ? input : item )))
+        }else{
+            setInputArr(prev => [...prev,input]);
+            setInput({ title: "", content: "" });
+        }
+       
     }
 
     return (
@@ -18,7 +30,7 @@ const Form = ({ input, setInput,setInputArr }) => {
             
             <div className="mb-3">
                 <input 
-                    value={input.title} 
+                    value={input.title}
                     name="title"  
                     type="text" 
                     className='form-control' 
@@ -42,7 +54,7 @@ const Form = ({ input, setInput,setInputArr }) => {
 
             
             <div className="form-floating mb-3">
-                <button className='btn btn-primary' onClick={addToList}>Add to List</button>
+                <button className='btn btn-primary' onClick={addToList}>{editIndex==null?"Add":"Edit"}</button>
             </div>
         </div>
     );

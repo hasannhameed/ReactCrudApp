@@ -5,16 +5,25 @@ import Modal from "../modal/Modal";
 import List from "../list/List";
 
 
-const Table = ({input,setColor,setInput,isOpen,setIsOpen, inputArr,setInputArr}) => {
+const Table = ({input,setColor,setInput,isOpen,setIsOpen, inputArr,setInputArr,setEditIndex,editIndex}) => {
 
     const {bgColor} = useContext(ThemeContext);
+   
 
     const chnageColor = ()=>{
       setColor(prevColor => prevColor === "white" ? "black" : "white")
     }
 
-    const modalControler = () => {
+    const modalControler = (index = null) => {
       setIsOpen(pre=>pre?false:true);
+      setEditIndex(index)
+      if(!isOpen){
+        setInput({
+          title:"",
+          content:''
+        })
+      }
+      
     }
     
     
@@ -34,8 +43,8 @@ const Table = ({input,setColor,setInput,isOpen,setIsOpen, inputArr,setInputArr})
                   <th>Action</th>
                 </tr>
               </thead>
-              <List inputArr={inputArr} />
-              <Modal setInputArr={setInputArr} isOpen={isOpen} input={input} setInput={setInput} modalControler={modalControler}/>
+              <List inputArr={inputArr} modalControler={modalControler}/>
+              <Modal inputArr={inputArr} setInputArr={setInputArr} isOpen={isOpen} input={input} setInput={setInput} modalControler={modalControler} editIndex={editIndex}/>
             </table>
            
         </div>
