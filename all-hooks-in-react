@@ -1,0 +1,60 @@
+🔹 1. Basic Hooks
+These are the most commonly used hooks for state and effects.
+
+Hook	Description
+useState	Manages component state (e.g., counters, form inputs).
+useEffect	Handles side effects (e.g., API calls, event listeners).
+useContext	Accesses global state using React.createContext().
+🔹 2. Performance Optimization Hooks
+These hooks help improve performance by memoizing values or functions.
+
+Hook	Description
+useMemo	Caches expensive calculations to prevent unnecessary recomputation.
+useCallback	Caches function references to prevent unnecessary re-renders.
+🔹 3. Reference & DOM Manipulation Hooks
+These hooks allow working with DOM elements and mutable values without triggering re-renders.
+
+Hook	Description
+useRef	Stores mutable values or DOM references without causing re-renders.
+useImperativeHandle	Customizes a ref to expose specific methods to parent components.
+🔹 4. Lifecycle & State Management Hooks
+For handling complex state logic and lifecycle events.
+
+Hook	Description
+useReducer	Alternative to useState for complex state logic (similar to Redux).
+useLayoutEffect	Similar to useEffect, but runs before the UI is painted.
+useInsertionEffect	Runs before CSS-in-JS styles are inserted (for UI libraries).
+🔹 5. Transition & UI Optimization Hooks
+These hooks help improve UI performance.
+
+Hook	Description
+useTransition	Marks state updates as "transitions", allowing smoother rendering.
+useDeferredValue	Delays updating a state value to avoid UI blocking.
+🔹 6. Debugging & Utility Hooks
+For debugging and generating unique values.
+
+Hook	Description
+useDebugValue	Displays debug information in React DevTools.
+useId	Generates unique IDs (for accessibility & forms).
+🔹 7. Server Components & External Store Hooks
+Hooks designed for React Server Components and external state management.
+
+Hook	Description
+useSyncExternalStore	Syncs state with external stores (used in Redux, Zustand, etc.).
+useOptimistic	Optimistically updates UI before receiving a server response.
+🔹 8. Experimental Hooks
+These are not officially stable but are available for testing.
+
+Hook	Description
+useEvent	Optimizes event handlers without re-rendering (experimental).
+🔹 9. Custom Hooks
+
+🔥 Summary:
+✅ Core Hooks: useState, useEffect, useContext
+✅ Performance Hooks: useMemo, useCallback
+✅ Ref & DOM Hooks: useRef, useImperativeHandle
+✅ State & Lifecycle Hooks: useReducer, useLayoutEffect
+✅ Optimization Hooks: useTransition, useDeferredValue
+✅ Debugging Hooks: useDebugValue, useId
+✅ Server Hooks: useSyncExternalStore, useOptimistic
+
