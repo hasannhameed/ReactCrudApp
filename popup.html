@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Report Generator</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            width: 320px;
+            padding: 15px;
+            background: #f4f4f4;
+            text-align: center;
+        }
+
+        h3 {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            background: #007bff;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        pre {
+            overflow-x: auto;
+            background: white;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        .description {
+            display: block;
+        }
+
+        .taskName {
+            display: block;
+        }
+
+        .taskEntry {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: max-height 0.4s ease-in-out, padding 0.3s ease-in-out;
+            overflow: hidden;
+            max-height: 500px;
+        }
+
+        .taskEntry.collapsed {
+            max-height: 40px !important;
+            padding: 5px;
+            overflow: hidden;
+        }
+
+        .taskContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeIn 0.3s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <h3>Report Generator</h3>
+    <label>Report Type:</label>
+    <select id="reportType">
+        <option value="EOD">EOD</option>
+        <option value="SOD">SOD</option>
+    </select>
+    <div id="taskContainer" class="taskContainer"></div>
+    <button id="addTask">Add Task</button>
+    <button id="generate">Preview</button>
+    <button id="copyButton">Copy to Clipboard</button>
+    <pre id="output"></pre>
+    <script src="popup.js"></script>
+</body>
+
+</html>

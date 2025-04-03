@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "EOD & SOD Report Generator",
+    "version": "1.2",
+    "description": "Generate and copy EOD and SOD reports in a specific format.",
+    "permissions": [
+        "clipboardWrite",
+        "storage"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_icon": "report.png"
+    },
+    "icons": {
+        "16": "report.png",
+        "48": "report.png",
+        "128": "report.png"
+    }
+}
